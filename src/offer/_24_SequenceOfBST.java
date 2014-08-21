@@ -26,7 +26,7 @@ public class _24_SequenceOfBST {
 		if (start >= end) {
 			return true;
 		}
-		
+
 		int mid = start;
 		while (nums[mid] < nums[end]) {
 			mid++;
@@ -37,6 +37,10 @@ public class _24_SequenceOfBST {
 			}
 		}
 
-		return isPostOrderTraversal(nums, start, mid - 1) && isPostOrderTraversal(nums, mid, end - 1);
+		// divide & conquer
+		boolean left = isPostOrderTraversal(nums, start, mid - 1);
+		boolean right = isPostOrderTraversal(nums, mid, end - 1);
+
+		return left && right;
 	}
 }
