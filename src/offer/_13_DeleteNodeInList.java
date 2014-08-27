@@ -4,15 +4,19 @@ public class _13_DeleteNodeInList {
 
 	public static void main(String[] args) {
 
-		ListNode node1 = new ListNode(1);
-		ListNode node2 = new ListNode(2);
-		ListNode node3 = new ListNode(3);
-		ListNode node4 = new ListNode(4);
-		node1.next = node2;
-		node2.next = node3;
-		node3.next = node4;
+		int[] array = new int[] { 1, 2, 3, 4 };
+		ListNode dummy = new ListNode(-1);
+		ListNode node = dummy;
+		ListNode node1 = null;
+		for (int i = 0; i < array.length; i++) {
+			node.next = new ListNode(array[i]);
+			node = node.next;
+			if (i == 3) {
+				node1 = node;
+			}
+		}
 
-		ListNode head = deleteNode(node1, node2);
+		ListNode head = deleteNode(dummy.next, node1);
 
 		while (head != null) {
 			System.out.print(head.val + " ");
