@@ -4,15 +4,15 @@ public class _15_KthNodeFromEnd {
 
 	public static void main(String[] args) {
 
-		ListNode node1 = new ListNode(1);
-		ListNode node2 = new ListNode(2);
-		ListNode node3 = new ListNode(3);
-		ListNode node4 = new ListNode(4);
-		node1.next = node2;
-		node2.next = node3;
-		node3.next = node4;
+		int[] array = new int[] { 1, 2, 3, 4 };
+		ListNode dummy = new ListNode(-1);
+		ListNode node = dummy;
+		for (int i : array) {
+			node.next = new ListNode(i);
+			node = node.next;
+		}
 
-		ListNode node = findNode(node1, 4);
+		node = findNode(dummy.next, 4);
 
 		System.out.println(node == null ? "NULL" : node.val);
 	}
