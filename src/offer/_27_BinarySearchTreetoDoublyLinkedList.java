@@ -8,7 +8,7 @@ public class _27_BinarySearchTreetoDoublyLinkedList {
 
 	public static TreeNode preorderTreeToList(TreeNode root) {
 		if (root == null) {
-			return root;
+			return null;
 		}
 
 		TreeNode lHead = preorderTreeToList(root.left);
@@ -27,18 +27,20 @@ public class _27_BinarySearchTreetoDoublyLinkedList {
 			node.right = rHead;
 			rHead.left = node;
 		}
+		root.left = null;
 
 		return root;
 	}
 
 	public static TreeNode inorderTreeToList(TreeNode root) {
 		if (root == null) {
-			return root;
+			return null;
 		}
 
 		TreeNode lHead = inorderTreeToList(root.left);
 		TreeNode rHead = inorderTreeToList(root.right);
 
+		lHead = null;
 		TreeNode node = lHead;
 		while (node != null && node.right != null) {
 			node = node.right;
@@ -56,7 +58,7 @@ public class _27_BinarySearchTreetoDoublyLinkedList {
 	}
 
 	// Definition for binary tree
-	public static class TreeNode {
+	private static class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;
