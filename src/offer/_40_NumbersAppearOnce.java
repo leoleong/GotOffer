@@ -2,24 +2,9 @@ package offer;
 
 import java.io.IOException;
 import java.io.StreamTokenizer;
-import java.util.Scanner;
 
 public class _40_NumbersAppearOnce {
 
-	// Scanner : TLE
-	/*public static void main(String[] args) {
-
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int T = sc.nextInt();
-			int[] nums = new int[T];
-			for (int i = 0; i < T; i++) {
-				nums[i] = sc.nextInt();
-			}
-			numbersAppearOnce(nums);
-		}
-	}*/
-	
 	public static void main(String[] args) throws IOException {
 
 		StreamTokenizer st = new StreamTokenizer(System.in);
@@ -39,18 +24,22 @@ public class _40_NumbersAppearOnce {
 		int value = 0;
 		int group1 = 0;
 		int group2 = 0;
-		int pos = 0;
+		int index = 0;
+
+		// xor of 2 diffs
 		for (int num : nums) {
 			value ^= num;
 		}
+		// index different bit
 		for (int i = 0; i < 32; i++) {
 			if ((value & (1 << i)) != 0) {
-				pos = i;
+				index = i;
 				break;
 			}
 		}
+		// seperate nums
 		for (int num : nums) {
-			if ((num & (1 << pos)) != 0) {
+			if ((num & (1 << index)) != 0) {
 				group1 ^= num;
 			} else {
 				group2 ^= num;
