@@ -1,4 +1,4 @@
-package offer;
+package offer.linkedlist;
 
 public class _17_MergeSortedList {
 
