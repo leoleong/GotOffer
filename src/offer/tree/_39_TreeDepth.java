@@ -1,4 +1,4 @@
-package offer;
+package offer.tree;
 
 import java.io.IOException;
 

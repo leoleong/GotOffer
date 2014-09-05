@@ -1,4 +1,4 @@
-package offer;
+package offer.tree;
 
 public class _27_BinarySearchTreetoDoublyLinkedList {
 
