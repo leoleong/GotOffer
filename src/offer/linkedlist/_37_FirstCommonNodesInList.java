@@ -5,21 +5,11 @@ public class _37_FirstCommonNodesInList {
 	public static void main(String[] args) {
 
 		int[] array1 = new int[] { 1, 2, 3, 6, 7 };
-		ListNode dummy1 = new ListNode(-1);
-		ListNode l1 = dummy1;
-		for (int i : array1) {
-			l1.next = new ListNode(i);
-			l1 = l1.next;
-		}
 		int[] array2 = new int[] { 4, 5, 6, 7 };
-		ListNode dummy2 = new ListNode(-1);
-		ListNode l2 = dummy2;
-		for (int i : array2) {
-			l2.next = new ListNode(i);
-			l2 = l2.next;
-		}
+		ListNode head1 = parseListNode(array1);
+		ListNode head2 = parseListNode(array2);
 
-		ListNode node = findNode(dummy1.next, dummy2.next);
+		ListNode node = findNode(head1, head2);
 
 		System.out.println(node == null ? "NULL" : node.val);
 	}
@@ -55,13 +45,13 @@ public class _37_FirstCommonNodesInList {
 			return 0;
 		}
 
-		int count = 0;
+		int length = 0;
 		while (head != null) {
-			count++;
+			length++;
 			head = head.next;
 		}
 
-		return count;
+		return length;
 	}
 
 	private static ListNode relocate(ListNode head, int step) {
@@ -72,6 +62,19 @@ public class _37_FirstCommonNodesInList {
 		}
 
 		return head;
+	}
+
+	private static ListNode parseListNode(int[] array) {
+
+		ListNode dummy = new ListNode(Integer.MIN_VALUE);
+		ListNode cur = dummy;
+
+		for (int i : array) {
+			cur.next = new ListNode(i);
+			cur = cur.next;
+		}
+
+		return dummy.next;
 	}
 
 	private static class ListNode {
