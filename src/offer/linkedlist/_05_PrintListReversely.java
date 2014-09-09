@@ -1,79 +1,67 @@
 package offer.linkedlist;
 
 import java.io.IOException;
-import java.io.StreamTokenizer;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Scanner;
 
 public class _05_PrintListReversely {
 
 	public static void main(String[] args) throws IOException {
 
-		// 1. Scanner, Stack(TLE)
-//		 Scanner sc = new Scanner(System.in);
-//		 reverseUsingRecursion(sc);
-		// 2. Scanner, Recursion(TLE)
-//		 Scanner sc = new Scanner(System.in);
-//		 reverseUsingRecursion(sc);
-		// 3. StreamTokenizer, Recursion(TLE)
-//		 StreamTokenizer st = new StreamTokenizer(System.in);
-//		 reverseUsingRecursion(st);
-		// 4. StreamTokenizer, Stack(PASS)
-		StreamTokenizer st = new StreamTokenizer(System.in);
-		reverseUsingStack(st);
+		int[] array = new int[] { 1, 2, 3, 4, 5 };
+		ListNode head = parseListNode(array);
+		reverseUsingStack(head);
+		reverseUsingRecursion(head);
 	}
 
-	// PASS
-	private static void reverseUsingStack(StreamTokenizer st) throws IOException {
+	// Method 1: stack
+	private static void reverseUsingStack(ListNode head) {
+
+		if (head == null) {
+			return;
+		}
 
 		Deque<Integer> stack = new ArrayDeque<Integer>();
-		int value;
-		st.nextToken();
-		while ((value = (int) st.nval) != -1) {
-			stack.push(value);
-			st.nextToken();
+		while (head != null) {
+			stack.push(head.val);
+			head = head.next;
 		}
-		while (stack.size() > 0) {
+
+		while (!stack.isEmpty()) {
 			System.out.println(stack.pop());
 		}
 	}
 
-	// TLE
-	private static void reverseUsingRecursion(StreamTokenizer st) throws IOException {
+	// Method 2: recursion
+	private static void reverseUsingRecursion(ListNode head) {
 
-		st.nextToken();
-		int value = (int) st.nval;
-		if (value == -1) {
-			return;
-		}
-		reverseUsingRecursion(st);
-		System.out.println(value);
-	}
-
-	// --------------------------------------------------------------------------------
-	// TLE with scanner
-	private static void reverseUsingStack(Scanner sc) {
-
-		Deque<Integer> stack = new ArrayDeque<Integer>();
-		int value;
-		while ((value = sc.nextInt()) != -1) {
-			stack.push(value);
-		}
-		while (stack.size() > 0) {
-			System.out.println(stack.pop());
-		}
-	}
-
-	// TLE
-	private static void reverseUsingRecursion(Scanner sc) {
-
-		int value = sc.nextInt();
-		if (value == -1) {
+		if (head == null) {
 			return;
 		}
 
-		reverseUsingRecursion(sc);
-		System.out.println(value);
+		reverseUsingRecursion(head.next);
+		System.out.println(head.val);
+	}
+
+	private static ListNode parseListNode(int[] array) {
+
+		ListNode dummy = new ListNode(Integer.MIN_VALUE);
+		ListNode cur = dummy;
+
+		for (int i : array) {
+			cur.next = new ListNode(i);
+			cur = cur.next;
+		}
+
+		return dummy.next;
+	}
+
+	private static class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int val) {
+			this.val = val;
+		}
 	}
 }
