@@ -4,23 +4,12 @@ public class _17_MergeSortedList {
 
 	public static void main(String[] args) {
 
-		ListNode node1 = new ListNode(1);
-		ListNode node2 = new ListNode(3);
-		ListNode node3 = new ListNode(5);
-		ListNode node4 = new ListNode(7);
-		node1.next = node2;
-		node2.next = node3;
-		node3.next = node4;
+		int[] array1 = new int[] { 1, 3, 5, 7 };
+		int[] array2 = new int[] { 2, 4, 6, 8 };
+		ListNode head1 = parseListNode(array1);
+		ListNode head2 = parseListNode(array2);
 
-		ListNode node5 = new ListNode(2);
-		ListNode node6 = new ListNode(4);
-		ListNode node7 = new ListNode(5);
-		ListNode node8 = new ListNode(8);
-		node5.next = node6;
-		node6.next = node7;
-		node7.next = node8;
-
-		ListNode head = merge(node1, node5);
+		ListNode head = merge(head1, head2);
 
 		while (head != null) {
 			System.out.print(head.val + " ");
@@ -44,6 +33,19 @@ public class _17_MergeSortedList {
 			node = node.next;
 		}
 		node.next = l1 != null ? l1 : l2;
+
+		return dummy.next;
+	}
+
+	private static ListNode parseListNode(int[] array) {
+
+		ListNode dummy = new ListNode(Integer.MIN_VALUE);
+		ListNode cur = dummy;
+
+		for (int i : array) {
+			cur.next = new ListNode(i);
+			cur = cur.next;
+		}
 
 		return dummy.next;
 	}
