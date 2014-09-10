@@ -1,24 +1,14 @@
 package offer.tree;
 
 import java.io.IOException;
-import java.io.StreamTokenizer;
 
 public class _24_SequenceOfBST {
 
 	public static void main(String[] args) throws IOException {
 
-		StreamTokenizer st = new StreamTokenizer(System.in);
-		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			int T = (int) st.nval;
-			int[] nums = new int[T];
-			for (int i = 0; i < T; i++) {
-				st.nextToken();
-				nums[i] = (int) st.nval;
-			}
-
-			boolean result = isPostOrderTraversal(nums, 0, T - 1);
-			System.out.println(result ? "Yes" : "No");
-		}
+		int[] nums = new int[] { 5, 7, 6, 9, 11, 10, 8 };
+		boolean result = isPostOrderTraversal(nums, 0, nums.length - 1);
+		System.out.println(result ? "Yes" : "No");
 	}
 
 	private static boolean isPostOrderTraversal(int[] nums, int start, int end) {
