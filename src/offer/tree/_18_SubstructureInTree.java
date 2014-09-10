@@ -1,88 +1,96 @@
 package offer.tree;
 
-import java.io.IOException;
-import java.io.StreamTokenizer;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
 
 public class _18_SubstructureInTree {
 
-	private static int[] pNode, plNode, prNode, cNode, clNode, crNode;
+	public static void main(String[] args) {
 
-	public static void main(String[] args) throws IOException {
+		int[] array1 = new int[] { 8, 8, 7, 9, 2, -1, -1, -1, -1, 4, 7 };
+		int[] array2 = new int[] { 8, 9, 2 };
+		TreeNode root = parseTree(array1);
+		TreeNode subRoot = parseTree(array2);
 
-		StreamTokenizer st = new StreamTokenizer(System.in);
-		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			int N = (int) st.nval;
-			st.nextToken();
-			int M = (int) st.nval;
-			pNode = new int[N + 1];
-			plNode = new int[N + 1];
-			prNode = new int[N + 1];
-			cNode = new int[M + 1];
-			clNode = new int[M + 1];
-			crNode = new int[M + 1];
-			for (int i = 1; i <= N; i++) {
-				st.nextToken();
-				pNode[i] = (int) st.nval;
-			}
-			for (int i = 1; i <= M; i++) {
-				st.nextToken();
-				cNode[i] = (int) st.nval;
-			}
-			for (int i = 1; i <= N; i++) {
-				st.nextToken();
-				int val = (int) st.nval;
-				if (val == 0) {
-					plNode[i] = prNode[i] = -1;
-				} else if (val == 2) {
-					st.nextToken();
-					plNode[i] = (int) st.nval;
-					st.nextToken();
-					prNode[i] = (int) st.nval;
-				}
-			}
-			for (int i = 1; i <= M; i++) {
-				st.nextToken();
-				int val = (int) st.nval;
-				if (val == 0) {
-					clNode[i] = crNode[i] = -1;
-				} else if (val == 2) {
-					st.nextToken();
-					clNode[i] = (int) st.nval;
-					st.nextToken();
-					crNode[i] = (int) st.nval;
-				}
-			}
-			boolean result = traversal(1, 1);
-			System.out.println(result ? "Yes" : "No");
-		}
+		boolean result = traversal(root, subRoot);
+		System.out.println(result);
 	}
 
-	private static boolean traversal(int pRoot, int cRoot) {
+	private static boolean traversal(TreeNode root, TreeNode subRoot) {
 
-		boolean hasSubTree = false;
-		if (pNode[pRoot] != -1 && cNode[cRoot] != -1) {
-			if (pNode[pRoot] == cNode[cRoot]) {
-				hasSubTree = hasSubTree(pRoot, cRoot);
-			}
-			if (!hasSubTree) {
-				hasSubTree = traversal(plNode[pRoot], cRoot) || traversal(prNode[pRoot], cRoot);
+		Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
+
+		while (root != null || !stack.isEmpty()) {
+			if (root != null) {
+				boolean result = hasSubTree(root, subRoot);
+				if (result) {
+					return true;
+				}
+				stack.push(root);
+				root = root.left;
+			} else {
+				root = stack.pop();
+				root = root.right;
 			}
 		}
 
-		return hasSubTree;
+		return false;
 	}
 
-	private static boolean hasSubTree(int pRoot, int cRoot) {
+	private static boolean hasSubTree(TreeNode root, TreeNode subRoot) {
 
-		// convergence condition
-		if (cNode[cRoot] == -1) {
+		if (subRoot == null) {
 			return true;
 		}
-		// pruning condition
-		if (pNode[pRoot] == -1) {
+		if (root == null) {
 			return false;
 		}
 
-		return pNode[pRoot] == cNode[cRoot] && hasSubTree(plNode[pRoot], clNode[cRoot]) && hasSubTree(prNode[pRoot], crNode[cRoot]);
+		boolean left = hasSubTree(root.left, subRoot.left);
+		boolean right = hasSubTree(root.right, subRoot.right);
+
+		return root.val == subRoot.val && left && right;
+	}
+
+	private static TreeNode parseTree(int[] array) {
+
+		if (array == null || array.length == 0) {
+			return null;
+		}
+
+		int NIL = -1;
+		int count = 1;
+		Queue<TreeNode> queue = new ArrayDeque<TreeNode>();
+		TreeNode root = new TreeNode(array[0]);
+		queue.offer(root);
+
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				TreeNode node = queue.poll();
+				if (count < array.length && array[count] != NIL) {
+					node.left = new TreeNode(array[count]);
+					queue.offer(node.left);
+				}
+				count++;
+				if (count < array.length && array[count] != NIL) {
+					node.right = new TreeNode(array[count]);
+					queue.offer(node.right);
+				}
+				count++;
+			}
+		}
+
+		return root;
+	}
+
+	private static class TreeNode {
+		int val;
+		TreeNode left, right;
+
+		TreeNode(int val) {
+			this.val = val;
+		}
 	}
 }
