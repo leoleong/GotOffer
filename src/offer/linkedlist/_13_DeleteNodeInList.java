@@ -1,22 +1,20 @@
 package offer.linkedlist;
 
+import java.util.Random;
+
 public class _13_DeleteNodeInList {
 
 	public static void main(String[] args) {
 
 		int[] array = new int[] { 1, 2, 3, 4 };
-		ListNode dummy = new ListNode(-1);
-		ListNode node = dummy;
-		ListNode node1 = null;
-		for (int i = 0; i < array.length; i++) {
-			node.next = new ListNode(array[i]);
+		ListNode head = parseListNode(array);
+		ListNode node = head;
+		int i = new Random().nextInt(array.length);
+		while (i-- > 0) {
 			node = node.next;
-			if (i == 3) {
-				node1 = node;
-			}
 		}
 
-		ListNode head = deleteNode(dummy.next, node1);
+		head = deleteNode(head, node);
 
 		while (head != null) {
 			System.out.print(head.val + " ");
@@ -28,7 +26,7 @@ public class _13_DeleteNodeInList {
 
 		// assume node is in the list
 		if (head == null) {
-			return head;
+			return null;
 		}
 
 		// use dummy node while head is ambiguous
@@ -53,6 +51,19 @@ public class _13_DeleteNodeInList {
 			}
 			prev.next = cur.next;
 			cur.next = null;
+		}
+
+		return dummy.next;
+	}
+
+	private static ListNode parseListNode(int[] array) {
+
+		ListNode dummy = new ListNode(Integer.MIN_VALUE);
+		ListNode cur = dummy;
+
+		for (int i : array) {
+			cur.next = new ListNode(i);
+			cur = cur.next;
 		}
 
 		return dummy.next;
