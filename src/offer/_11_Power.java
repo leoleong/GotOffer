@@ -1,32 +1,40 @@
 package offer;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.Scanner;
-
 public class _11_Power {
 
-	// cost too much time for formation, go over leetcode.pow instead
 	public static void main(String[] args) {
 
-		Scanner sc = new Scanner(System.in);
-		int T = sc.nextInt();
-		while (T-- > 0) {
-			BigDecimal base = new BigDecimal(sc.next());
-			int exponent = sc.nextInt();
-			double result = power(base, exponent);
-			System.out.println(result);
+		double base = 2;
+		int exponent = 0;
+		double result = pow(base, exponent);
+		System.out.println(result);
+	}
+
+	private static double pow(double base, int exponent) {
+
+		long exp = exponent;
+
+		if (exp >= 0) {
+			return power(base, exp);
+		} else {
+			return 1 / power(base, -exp);
 		}
 	}
 
-	private static double power(BigDecimal base, int exponent) {
+	private static double power(double base, long exponent) {
 
-		double result = base.doubleValue();
-		return result;
-//		if (result == 0) {
-//			return result;
-//		}
-//		
-//		return 1;
+		if (exponent == 0) {
+			return 1;
+		}
+		if (exponent == 1) {
+			return base;
+		}
+
+		double half = power(base, exponent >> 1);
+		if ((exponent & 1) == 0) {
+			return half * half;
+		} else {
+			return half * half * base;
+		}
 	}
 }
