@@ -1,37 +1,22 @@
 package offer;
 
-import java.io.IOException;
-import java.io.StreamTokenizer;
-
 public class _31_GreatestSumOfSubarrays {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
-		StreamTokenizer st = new StreamTokenizer(System.in);
-		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			int T = (int) st.nval;
-			if (T == 0) {
-				return;
-			}
-			int[] nums = new int[T];
-			for (int i = 0; i < T; i++) {
-				st.nextToken();
-				nums[i] = (int) st.nval;
-			}
-			greatestSumOfSubarrays(nums);
-		}
+		int[] nums = new int[] { 1, -2, 3, 10, -4, 7, 2, -5 };
+		greatestSumOfSubarrays(nums);
 	}
 
 	private static void greatestSumOfSubarrays(int[] nums) {
 
-		int length = nums.length;
-		int[] dp = new int[length];
+		int[] dp = new int[nums.length];
 		dp[0] = nums[0];
-		int max = dp[0];
+		int max = 0;
 		int start, end, tStart, tEnd;
 		start = end = tStart = tEnd = 0;
 
-		for (int i = 1; i < length; i++) {
+		for (int i = 1; i < nums.length; i++) {
 			if (dp[i - 1] < 0) {
 				dp[i] = nums[i];
 				tStart = i;
@@ -45,6 +30,9 @@ public class _31_GreatestSumOfSubarrays {
 				end = tEnd;
 			}
 		}
-		System.out.println(max + " " + start + " " + end);
+
+		System.out.println("Max : " + max);
+		System.out.println("Start : " + start);
+		System.out.println("End : " + end);
 	}
 }
