@@ -1,33 +1,28 @@
 package offer;
 
-import java.util.Scanner;
-
 public class _09_Fabonacci {
 
 	public static void main(String[] args) {
 
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int n = sc.nextInt();
-			long result = Fabonacci(n);
-			System.out.println(result);
-		}
+		int n = 4;
+		long result = Fabonacci(n);
+		System.out.println(result);
 	}
 
-	// result should be long, otherwise might cross boarder
+	// result should be long, otherwise might overflow
 	private static long Fabonacci(int n) {
 
-		long[] result = new long[] { 0, 1 };
-		if (n < 2) {
-			return result[n];
+		if (n < 1) {
+			return 0;
 		}
+
+		long[] fab = new long[n + 1];
+		fab[1] = 1;
 
 		for (int i = 2; i <= n; i++) {
-			long fab = result[1];
-			result[1] = result[0] + result[1];
-			result[0] = fab;
+			fab[i] = fab[i - 1] + fab[i - 2];
 		}
 
-		return result[1];
+		return fab[n];
 	}
 }
