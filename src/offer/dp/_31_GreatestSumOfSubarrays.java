@@ -31,8 +31,8 @@ public class _31_GreatestSumOfSubarrays {
 			}
 		}
 
-		System.out.println("Max : " + max);
-		System.out.println("Start : " + start);
-		System.out.println("End : " + end);
+		System.out.println("Max val : " + max);
+		System.out.println("Start idx : " + start);
+		System.out.println("End idx : " + end);
 	}
 }
