@@ -7,23 +7,10 @@ public class _38_GetNumberOfK {
 
 	public static void main(String[] args) throws IOException {
 
-		StreamTokenizer st = new StreamTokenizer(System.in);
-		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			int T = (int) st.nval;
-			int[] nums = new int[T];
-			for (int i = 0; i < T; i++) {
-				st.nextToken();
-				nums[i] = (int) st.nval;
-			}
-			st.nextToken();
-			int S = (int) st.nval;
-			for (int i = 0; i < S; i++) {
-				st.nextToken();
-				int target = (int) st.nval;
-				int result = getNumberOfK(nums, target);
-				System.out.println(result);
-			}
-		}
+		int[] nums = new int[] { 1, 2, 3, 3, 3, 3, 4, 5 };
+		int target = 3;
+		int result = getNumberOfK(nums, target);
+		System.out.println(result);
 	}
 
 	private static int getNumberOfK(int[] nums, int target) {
@@ -41,7 +28,7 @@ public class _38_GetNumberOfK {
 		int index = -1;
 
 		while (start <= end) {
-			int mid = (start + end) / 2;
+			int mid = start + (end - start) /2;
 			if (nums[mid] == target) {
 				end = mid - 1;
 				index = mid;

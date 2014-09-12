@@ -18,7 +18,7 @@ public class _08_MinimumOfRotatedArray {
 		int min = Integer.MAX_VALUE;
 
 		while (start <= end) {
-			int mid = (start + end) / 2;
+			int mid = start + (end - start) / 2;
 			if (nums[mid] == nums[start]) {
 				// couldn't judge order
 				start++;
