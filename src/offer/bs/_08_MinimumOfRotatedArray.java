@@ -1,4 +1,4 @@
-package offer;
+package offer.bs;
 
 import java.io.IOException;
 
