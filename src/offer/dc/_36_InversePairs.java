@@ -1,4 +1,4 @@
-package offer;
+package offer.dc;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ public class _36_InversePairs {
 		System.out.println(result);
 	}
 
-	public static int computePairs(int[] array) {
+	private static int computePairs(int[] array) {
 
 		if (array == null || array.length <= 1) {
 			return 0;

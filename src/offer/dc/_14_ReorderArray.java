@@ -1,4 +1,4 @@
-package offer;
+package offer.dc;
 
 import java.util.Arrays;
 
@@ -11,7 +11,7 @@ public class _14_ReorderArray {
 		System.out.println(Arrays.toString(array));
 	}
 
-	public static void reorder(int[] array) {
+	private static void reorder(int[] array) {
 
 		if (array == null || array.length <= 1) {
 			return;

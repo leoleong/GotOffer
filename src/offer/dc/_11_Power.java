@@ -1,4 +1,4 @@
-package offer;
+package offer.dc;
 
 public class _11_Power {
 

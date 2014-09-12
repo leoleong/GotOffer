@@ -1,4 +1,4 @@
-package offer;
+package offer.dc;
 
 public class _33_SortArrayForMinNumber {
 
@@ -9,7 +9,11 @@ public class _33_SortArrayForMinNumber {
 		System.out.println(result);
 	}
 
-	public static String printMinNumber(int[] array) {
+	private static String printMinNumber(int[] array) {
+
+		if (array == null || array.length == 0) {
+			return "0";
+		}
 
 		quickSort(array, 0, array.length - 1);
 		StringBuilder sb = new StringBuilder();
