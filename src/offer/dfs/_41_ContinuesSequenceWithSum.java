@@ -1,4 +1,4 @@
-package offer;
+package offer.dfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;

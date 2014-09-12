@@ -1,4 +1,4 @@
-package offer;
+package offer.dfs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 public class _12_Print1ToMaxOfDigits {
 
 	public static void main(String[] args) {
+		
 		List<String> result = new ArrayList<String>();
 		StringBuilder path = new StringBuilder();
 		int n = 5;
@@ -18,6 +19,7 @@ public class _12_Print1ToMaxOfDigits {
 
 	private static void generateNumbers(List<String> result,
 			StringBuilder path, int n, int start) {
+		
 		if (start == n) {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < path.length(); i++) {

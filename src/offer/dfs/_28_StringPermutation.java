@@ -1,4 +1,4 @@
-package offer;
+package offer.dfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +24,7 @@ public class _28_StringPermutation {
 		StringBuilder path = new StringBuilder();
 		boolean[] isUsed = new boolean[array.length];
 
+		// in case of duplicates
 		Arrays.sort(array);
 		generatePath(result, path, array, isUsed);
 
