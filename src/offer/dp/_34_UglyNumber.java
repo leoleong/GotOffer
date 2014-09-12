@@ -1,4 +1,4 @@
-package offer;
+package offer.dp;
 
 public class _34_UglyNumber {
 

@@ -1,4 +1,4 @@
-package offer;
+package offer.dp;
 
 import java.util.Arrays;
 
