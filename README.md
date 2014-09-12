@@ -1,4 +1,4 @@
-GotOffer
+Offer
 ========
 Problems are from [this book](http://book.douban.com/subject/6966465/). 
 
