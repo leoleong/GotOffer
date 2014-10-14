@@ -1,11 +1,8 @@
 package offer.bs;
 
-import java.io.IOException;
-import java.io.StreamTokenizer;
-
 public class _38_GetNumberOfK {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		int[] nums = new int[] { 1, 2, 3, 3, 3, 3, 4, 5 };
 		int target = 3;
@@ -14,7 +11,6 @@ public class _38_GetNumberOfK {
 	}
 
 	private static int getNumberOfK(int[] nums, int target) {
-
 		int lower = getLowerK(nums, target);
 		int higher = getHigherK(nums, target);
 
@@ -22,13 +18,12 @@ public class _38_GetNumberOfK {
 	}
 
 	private static int getLowerK(int[] nums, int target) {
-
 		int start = 0;
 		int end = nums.length - 1;
 		int index = -1;
 
 		while (start <= end) {
-			int mid = start + (end - start) /2;
+			int mid = start + (end - start) / 2;
 			if (nums[mid] == target) {
 				end = mid - 1;
 				index = mid;
@@ -43,7 +38,6 @@ public class _38_GetNumberOfK {
 	}
 
 	private static int getHigherK(int[] nums, int target) {
-
 		int start = 0;
 		int end = nums.length - 1;
 		int index = -1;
