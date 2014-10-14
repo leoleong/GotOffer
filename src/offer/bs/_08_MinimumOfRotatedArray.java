@@ -1,10 +1,8 @@
 package offer.bs;
 
-import java.io.IOException;
-
 public class _08_MinimumOfRotatedArray {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		int[] nums = new int[] { 1, 1, 1, 0, 1, 1 };
 		int min = minimumOfRotatedArray(nums);
@@ -12,7 +10,6 @@ public class _08_MinimumOfRotatedArray {
 	}
 
 	private static int minimumOfRotatedArray(int[] nums) {
-
 		int start = 0;
 		int end = nums.length - 1;
 		int min = Integer.MAX_VALUE;
