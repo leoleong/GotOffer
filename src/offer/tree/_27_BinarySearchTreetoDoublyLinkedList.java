@@ -40,7 +40,6 @@ public class _27_BinarySearchTreetoDoublyLinkedList {
 		TreeNode lHead = inorderTreeToList(root.left);
 		TreeNode rHead = inorderTreeToList(root.right);
 
-		lHead = null;
 		TreeNode node = lHead;
 		while (node != null && node.right != null) {
 			node = node.right;
